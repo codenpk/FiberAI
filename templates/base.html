@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!-- Primary Meta Tags -->
+    <title>DNA FISH Analysis</title>
+    <meta name="title" content="DNA FISH Analysis">
+    <meta name="description" content="Fluorescence in situ hybridization (abbreviated FISH) is a laboratory technique used to detect and locate a specific DNA sequence on a chromosome. In this technique, the full set of chromosomes from an individual is affixed to a glass slide and then exposed to a “probe”—a small piece of purified DNA tagged with a fluorescent dye. The fluorescently labeled probe finds and then binds to its matching sequence within the set of chromosomes. With the use of a special microscope, the chromosome and sub-chromosomal location where the fluorescent probe bound can be seen.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.inspirekit.org">
+    <meta property="og:title" content="DNA FISH Analysis">
+    <meta property="og:description" content="Fluorescence in situ hybridization (abbreviated FISH) is a laboratory technique used to detect and locate a specific DNA sequence on a chromosome. In this technique, the full set of chromosomes from an individual is affixed to a glass slide and then exposed to a “probe”—a small piece of purified DNA tagged with a fluorescent dye. The fluorescently labeled probe finds and then binds to its matching sequence within the set of chromosomes. With the use of a special microscope, the chromosome and sub-chromosomal location where the fluorescent probe bound can be seen.">
+    <meta property="og:image" content="{{ url_for('static', filename='icons/android-chrome-192x192.png') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.inspirekit.org">
+    <meta property="twitter:title" content="DNA FISH Analysis">
+    <meta property="twitter:description" content="Fluorescence in situ hybridization (abbreviated FISH) is a laboratory technique used to detect and locate a specific DNA sequence on a chromosome. In this technique, the full set of chromosomes from an individual is affixed to a glass slide and then exposed to a “probe”—a small piece of purified DNA tagged with a fluorescent dye. The fluorescently labeled probe finds and then binds to its matching sequence within the set of chromosomes. With the use of a special microscope, the chromosome and sub-chromosomal location where the fluorescent probe bound can be seen.">
+    <meta property="twitter:image" content="{{ url_for('static', filename='icons/android-chrome-192x192.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %} - DNA FISH Analysis</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script></head>
+    <style>
+        table.dataframe{
+            width: 100%;
+            text-align: right;
+        }
+
+        .dataframe th{
+            background:#3f577c;
+            font-family:monospace;
+            color:white;
+            border:1px solid white;
+            text-align:center !important;
+        }
+
+        .product-img--main {
+            position: relative;
+            overflow: hidden;
+            /* margin-bottom: 30px; */
+            width: 512px;
+            height: 512px;
+            float: left;
+            margin: 10px;
+        }
+
+        .product-img--main__image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            -webkit-transition: -webkit-transform .5s ease-out;
+            transition: -webkit-transform .5s ease-out;
+            transition: transform .5s ease-out;
+            transition: transform .5s ease-out,-webkit-transform .5s ease-out;
+        }
+    </style>
+    <script>
+        $( document ).ready(function(){
+            $('.product-img--main')
+            // tile mouse actions
+                .on('mouseover', function(){
+                    $(this).children('.product-img--main__image').css({'transform': 'scale('+ $(this).attr('data-scale') +')'});
+                })
+                .on('mouseout', function(){
+                    $(this).children('.product-img--main__image').css({'transform': 'scale(1)'});
+                })
+                .on('mousemove', function(e){
+                    $(this).children('.product-img--main__image').css({'transform-origin': ((e.pageX - $(this).offset().left) / $(this).width()) * 100 + '% ' + ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +'%'});
+                })
+                // tiles set up
+                .each(function(){
+                    $(this)
+                    // add a image container
+                        .append('<div class="product-img--main__image"></div>')
+                        // set up a background image for each tile based on data-image attribute
+                        .children('.product-img--main__image').css({'background-image': 'url('+ $(this).attr('data-image') +')'});
+                });
+        });
+    </script>
+<body>
+<nav class="navbar navbar-inverse visible-xs">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">DNA FISH Analysis</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('hello') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-2 sidenav hidden-xs">
+            <h2>DNA FISH Analysis</h2>
+            <ul class="nav nav-pills nav-stacked">
+                <li {% if active_page == "dash" %} class="active"{% endif %}><a href="{{ url_for('hello') }}">Home</a></li>
+                <li {% if active_page == "about" %} class="active"{% endif %}><a href="{{ url_for('about') }}">About</a></li>
+            </ul>
+            <br>
+            <p>{{ utc_dt }}</p>
+        </div>
+        <br>
+
+        <div class="col-sm-10">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

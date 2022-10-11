@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="well">
+    <h4>{% block title %} Home {% endblock %}</h4>
+    <p>Automated analysis of DNA FISH Fibers</p>
+</div>
+<!--
+<div class="row">
+    <div class="col-sm-6">
+        <div class="well">
+            <h4>Patient's DNA FISH Image</h4>
+            <p><img src="/{{ file1 }}" alt="Image1" style="width: 100%"/></p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="well">
+            <h4>Reference image to compare</h4>
+            <p><img src="/{{ file2 }}" alt="Image2"  style="width: 100%"/></p>
+        </div>
+    </div>
+</div>
+-->
+<div class="row">
+    <div class="col-sm-6">
+        <div class="well">
+            <h4>Image 1</h4>
+<!--            <p><img src="/{{ folder }}/Image1/visualization.png" alt="finalpreprocess"  style="width: 100%"/></p>-->
+            <div class="product-img--main" data-scale="2.2" data-image="/{{ folder }}/Image1/visualization.png"></div>
+            <!--Displaying the converted table-->
+            {% for table in table1 %}
+            <h2>{{titles[loop.index]}}</h2>
+            {{ table|safe }}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="well">
+            <h4>Image 2</h4>
+<!--            <p><img src="/{{ folder }}/Image2/visualization.png" alt="finalpreprocess"  style="width: 100%"/></p>-->
+            <div class="product-img--main" data-scale="2.2" data-image="/{{ folder }}/Image2/visualization.png"></div>
+            <!--Displaying the converted table-->
+            {% for table in table2 %}
+            <h2>{{titles[loop.index]}}</h2>
+            {{ table|safe }}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="well">
+            <p><b>Note:</b> The current model has been trained on a relatively small dataset, so performance can vary across images.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

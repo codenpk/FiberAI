@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="well">
+    <h4>{% block title %} About {% endblock %}</h4>
+    <p>Fluorescence in situ hybridization (abbreviated FISH) is a laboratory technique used to detect and locate a specific DNA sequence on a chromosome.
+        In this technique, the full set of chromosomes from an individual is affixed to a glass slide and then exposed to a “probe”—a small piece of purified DNA tagged with a fluorescent dye.
+        The fluorescently labeled probe finds and then binds to its matching sequence within the set of chromosomes.
+        With the use of a special microscope, the chromosome and sub-chromosomal location where the fluorescent probe bound can be seen.</p>
+    <p>To know more about DNA FISH Click on the following <a href="https://www.genome.gov/genetics-glossary/Fluorescence-In-Situ-Hybridization" target="_blank">link</a></p>
+    <p><b>Note:</b> The current model has been trained on a relatively small dataset, so performance can vary across images.</p>
+    <br/>
+    <p>{% block about %} Automated analysis of DNA FISH Fibers is hosted by Pavan Kumar N {% endblock %}</p>
+</div>
+{% endblock %}
